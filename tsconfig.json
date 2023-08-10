@@ -15,9 +15,11 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/modules*": ["./src/modules/*"],
+      "@/shared*": ["./src/shared/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server.js", "src/pages/_offline.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server.js", "src/pages/_offline.js", "src/shared/utils/handleBeforeInstallPrompt.js"],
   "exclude": ["node_modules"]
 }

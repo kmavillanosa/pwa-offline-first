@@ -2,6 +2,7 @@
 
 const runtimeCaching = require("next-pwa/cache");
 const withPWA = require("next-pwa")({
+  disable: true,
   dest: "public",
   register: true,
   skipWaiting: true,

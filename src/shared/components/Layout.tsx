@@ -1,4 +1,4 @@
-import { Adb } from "@mui/icons-material";
+import { CreateNewFolder } from "@mui/icons-material";
 import { AppBar, Toolbar, Box, Menu, Button } from "@mui/material";
 import { RestoreFromTrash } from "@mui/icons-material";
 import { ReactNode } from "react";
@@ -25,7 +25,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Button>
           </Box>
           <Box>
-            <div id="install-button-container"></div>
+            <Button onClick={() => resetDatabase()}>
+              < CreateNewFolder />
+              Create New Record
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

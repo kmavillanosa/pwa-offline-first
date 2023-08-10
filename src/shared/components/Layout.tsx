@@ -4,12 +4,15 @@ import { RestoreFromTrash } from "@mui/icons-material";
 import { ReactNode } from "react";
 import { handleBeforeInstallPrompt } from "../utils/handleBeforeInstallPrompt";
 import { resetDatabase } from "../database/DbContext";
+import { useRouter } from "next/router";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+
+  const router = useRouter();
   return (
     <Box boxShadow="none" component={"main"}>
       <AppBar color="transparent" position="sticky">
@@ -25,7 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Button>
           </Box>
           <Box>
-            <Button onClick={() => resetDatabase()}>
+            <Button onClick={() => router.push("/root/create")}>
               < CreateNewFolder />
               Create New Record
             </Button>

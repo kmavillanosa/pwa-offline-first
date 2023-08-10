@@ -35,13 +35,6 @@ export default function App({ Component, pageProps }: AppProps) {
         // Show the installation prompt
         deferredPrompt.prompt();
       });
-
-      // Add the install button to your UI
-      // For example, you can append it to a specific element in your HTML
-      const installButtonContainer = document.getElementById("install-button-container");
-      if (installButtonContainer) {
-        installButtonContainer.appendChild(installButton);
-      }
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
@@ -55,7 +48,6 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <div id="install-button-container"></div>
     </>
   );
 }

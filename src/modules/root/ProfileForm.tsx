@@ -31,7 +31,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ id }) => {
     validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
-      if (values.id != null) {
+      if (values.id !== undefined) {
         db.profiles.update(values.id, values);
       } else {
         db.profiles.add(values);

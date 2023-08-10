@@ -11,7 +11,6 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-
   const router = useRouter();
   return (
     <Box boxShadow="none" component={"main"}>
@@ -21,16 +20,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             style={{ margin: "10px", height: "50px" }}
             src="/images/application128.png"
           />
+
           <Box>
-            <Button onClick={() => resetDatabase()}>
-              <RestoreFromTrash />
-              Reset Database
+            <Button
+              startIcon={<CreateNewFolder />}
+              onClick={() => router.push("/root/create")}
+            >
+              Create New Record
             </Button>
           </Box>
           <Box>
-            <Button onClick={() => router.push("/root/create")}>
-              < CreateNewFolder />
-              Create New Record
+            <Button
+              startIcon={<RestoreFromTrash />}
+              onClick={() => resetDatabase()}
+            >
+              Reset Database
             </Button>
           </Box>
         </Toolbar>

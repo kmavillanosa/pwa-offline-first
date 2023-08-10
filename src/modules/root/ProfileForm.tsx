@@ -24,14 +24,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ id }) => {
   const formik = useFormik<Entities.Profile>({
     enableReinitialize : true,
     initialValues: {
-      id: exists ? id : 0,
+      id: exists ? id : undefined,
       lastName: currentProfile?.firstName ? currentProfile?.firstName : "",
       firstName: currentProfile?.firstName ? currentProfile?.lastName : "",
     },
     validationSchema,
     onSubmit: (values) => {
       // Handle form submission here
-      if (values.id !== undefined) {
+      if (values.id !== undefined && values.id > 0) {
         db.profiles.update(values.id, values);
       } else {
         db.profiles.add(values);

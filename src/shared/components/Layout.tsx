@@ -1,10 +1,7 @@
-import { CreateNewFolder } from "@mui/icons-material";
 import { AppBar, Toolbar, Box, Menu, Button } from "@mui/material";
-import { RestoreFromTrash } from "@mui/icons-material";
 import { ReactNode } from "react";
-import { handleBeforeInstallPrompt } from "../utils/handleBeforeInstallPrompt";
-import { resetDatabase } from "../database/DbContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,24 +19,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           />
 
           <Box>
-            <Button
-              startIcon={<CreateNewFolder />}
-              onClick={() => router.push("/root/create")}
-            >
-              Create New Record
-            </Button>
-          </Box>
-          <Box>
-            <Button
-              startIcon={<RestoreFromTrash />}
-              onClick={() => resetDatabase()}
-            >
-              Reset Database
-            </Button>
+            <Button onClick={() => router.push("/root")}>Home</Button>
+            <Button onClick={() => router.push("/printing")}>Printing</Button>
           </Box>
         </Toolbar>
       </AppBar>
-      {children}
+      <Box margin={3}>{children}</Box>
     </Box>
   );
 };

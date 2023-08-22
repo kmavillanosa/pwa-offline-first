@@ -3,20 +3,15 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/shared/database/DbContext";
 import {
   DataGrid,
-  GridAddIcon,
   GridColDef,
   GridDeleteIcon,
-  GridMenuIcon,
-  GridRemoveIcon,
-  GridRowsProp,
-  GridToolbar,
-  GridValidRowModel,
 } from "@mui/x-data-grid";
 
 import { ModeEdit } from "@mui/icons-material";
 
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
+import ProfileOptions from "@/modulesroot/ProfileOptions";
 
 const RootPage: React.FC = () => {
   const allItems = useLiveQuery(() => db.profiles.toArray(), []) ?? [];
@@ -63,7 +58,8 @@ const RootPage: React.FC = () => {
   return (
     <Page title="pwa-demo-app">
       <Layout>
-        <DataGrid  density="compact" columns={columns} rows={allItems} />
+        <ProfileOptions />
+        <DataGrid density="compact" columns={columns} rows={allItems} />
       </Layout>
     </Page>
   );

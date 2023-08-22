@@ -52,7 +52,9 @@ const PrintingPage: React.FC = () => {
           {!selectedValue ? (
             ""
           ) : (
-            <PDFViewer height={500}>
+            <PDFViewer style={{
+              margin : "10px"
+            }} height={500}>
               <ReportTemplate data={selectedValue} />
             </PDFViewer>
           )}

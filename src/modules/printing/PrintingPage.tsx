@@ -11,10 +11,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useLiveQuery } from "dexie-react-hooks";
-import ReactPDF from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer";
 import { useState } from "react";
 import ReportTemplate from "@/shared/templates/ReportTemplate";
-
+import { renderToStaticMarkup } from "react-dom/server";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const PrintingPage: React.FC = () => {
@@ -49,6 +49,14 @@ const PrintingPage: React.FC = () => {
             ))}
           </Select>
 
+          {!selectedValue ? (
+            ""
+          ) : (
+            <PDFViewer height={500}>
+              <ReportTemplate data={selectedValue} />
+            </PDFViewer>
+          )}
+
           <Box margin={1}>
             {!selectedValue ? (
               <p>Please select sender</p>
@@ -69,7 +77,6 @@ const PrintingPage: React.FC = () => {
                       )
                     }
                   </PDFDownloadLink>
-
                   <Button
                     style={{ margin: 1 }}
                     variant="contained"

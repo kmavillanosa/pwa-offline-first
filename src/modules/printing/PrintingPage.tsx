@@ -3,6 +3,7 @@ import { db } from "@/shared/database/DbContext";
 import {
   Box,
   Button,
+  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -22,14 +23,20 @@ const PrintingPage: React.FC = () => {
 
   const [selectedValue, SetSelectedValue] = useState<Entities.Transaction>();
 
+  const [docLoading, setDocLoading] = useState(false);
+
   const queryValue = async (id: number) => {
     return await db.tranx.where({ id: id }).first();
   };
 
   const handleChange = (event: SelectChangeEvent) => {
-    queryValue(parseInt(event.target.value as string)).then((resp) =>
-      SetSelectedValue(resp)
-    );
+    queryValue(parseInt(event.target.value as string)).then((resp) => {
+      setDocLoading(true);
+      SetSelectedValue(resp);
+      setTimeout(() => {
+        setDocLoading(false);
+      }, 500);
+    });
   };
 
   return (
@@ -51,10 +58,15 @@ const PrintingPage: React.FC = () => {
 
           {!selectedValue ? (
             ""
+          ) : docLoading ? (
+            <CircularProgress style={{ margin: 5, alignSelf: "center" }} />
           ) : (
-            <PDFViewer style={{
-              margin : "10px"
-            }} height={500}>
+            <PDFViewer
+              style={{
+                margin: "10px",
+              }}
+              height={500}
+            >
               <ReportTemplate data={selectedValue} />
             </PDFViewer>
           )}

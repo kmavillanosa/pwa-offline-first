@@ -25,3 +25,7 @@ export function resetDatabase() {
   db.tables.map((table) => table.clear());
   populate();
 }
+
+export function deleteDatabase() {
+  Dexie.delete("pwa-db-app");
+}

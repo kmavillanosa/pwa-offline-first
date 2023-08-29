@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { orange, teal } from "@mui/material/colors";
 import RouteButton from "./RouteButton";
-import { db, resetDatabase } from "@/shareddatabase/DbContext";
+import { db, deleteDatabase } from "@/shareddatabase/DbContext";
 import { Restore } from "@mui/icons-material";
 
 interface LayoutProps {
@@ -62,7 +62,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               PWA SAMPLE APP
-              <IconButton color="secondary" onClick={() => resetDatabase()}>
+              <IconButton color="secondary" onClick={() => {
+                deleteDatabase();
+                router.reload();
+              }}>
                 <Restore />
               </IconButton>
             </Typography>

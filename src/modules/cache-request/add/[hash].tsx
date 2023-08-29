@@ -74,6 +74,7 @@ const AddCacheToDevice = () => {
                         <Button
                             onClick={() => {
                                 db.colors.add({
+                                    origin: "shared",
                                     hash: data.hash,
                                     result: data.result,
                                 });

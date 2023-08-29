@@ -1,6 +1,7 @@
 declare global {
   namespace Data {
     interface ColorGame {
+      origin: "self" | "shared";
       hash: string;
       result: string[];
     }
@@ -16,6 +17,7 @@ declare global {
     }
 
     export interface Color extends EntityBase {
+      origin: "self" | "shared";
       hash: string;
       result: string[];
     }

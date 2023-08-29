@@ -25,9 +25,7 @@ const CacheViewer: React.FC<CacheViewerProps> = ({ hash }) => {
                 var value = enc(JSON.stringify(resp));
                 setNewHash(value);
             })
-            .catch((err) => {
-                alert("Error Detected");
-            });
+            .catch((err) => { });
     }, [hash]);
 
     if (!data) return <p>No Data</p>;

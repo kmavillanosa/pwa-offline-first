@@ -12,7 +12,7 @@ export class DbContext extends Dexie {
     this.version(1).stores({
       profiles: "++id",
       tranx: "++id",
-      colors: "++id, hash",
+      colors: "++id, hash, origin",
     });
   }
 }

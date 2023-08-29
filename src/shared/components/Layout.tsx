@@ -9,12 +9,15 @@ import {
   ThemeProvider,
   CssBaseline,
   Typography,
+  IconButton,
 } from "@mui/material";
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { orange, teal } from "@mui/material/colors";
 import RouteButton from "./RouteButton";
+import { db, resetDatabase } from "@/shareddatabase/DbContext";
+import { Restore } from "@mui/icons-material";
 
 interface LayoutProps {
   children: ReactNode;
@@ -59,9 +62,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               PWA SAMPLE APP
+              <IconButton color="secondary" onClick={() => resetDatabase()}>
+                <Restore />
+              </IconButton>
             </Typography>
             <Box>
-              {routes.map((item, idx) => <RouteButton key={idx} data={item} />)}
+              {routes.map((item, idx) => (
+                <RouteButton key={idx} data={item} />
+              ))}
             </Box>
           </Toolbar>
         </AppBar>

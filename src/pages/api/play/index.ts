@@ -22,6 +22,7 @@ export default function handler(
   res: NextApiResponse<Data.ColorGame | undefined>
 ) {
   let data: Data.ColorGame = {
+    origin: "self",
     hash: generateShortGuid(),
     result: [
       generateRandomColor(),

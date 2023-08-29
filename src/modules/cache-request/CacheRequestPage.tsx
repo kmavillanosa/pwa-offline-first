@@ -7,7 +7,11 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import SharedCache from "./SharedCache";
+import dynamic from "next/dynamic";
+
+
+const CacheList = dynamic(() => import("@/modulescache-request/CacheList"))
+
 
 const CacheRequestPage: React.FC = () => {
     const [current, setCurrent] = useState<Data.ColorGame | undefined>();
@@ -38,14 +42,18 @@ const CacheRequestPage: React.FC = () => {
                                     onChange={handleChange}
                                 >
                                     <Tab label="Viewer" value="1" />
-                                    <Tab label="Shared to me" value="2" />
+                                    <Tab label="My List" value="2" />
+                                    <Tab label="Shared to me" value="3" />
                                 </TabList>
                             </Box>
                             <TabPanel value="1">
                                 <CacheViewer hash={current?.hash ?? ""} />
                             </TabPanel>
                             <TabPanel value="2">
-                                <SharedCache />
+                                <CacheList type="self" />
+                            </TabPanel>
+                            <TabPanel value="3">
+                                <CacheList type="shared" />
                             </TabPanel>
                         </TabContext>
                     </Grid>

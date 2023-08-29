@@ -19,6 +19,7 @@ import {
     ListItemText,
     Divider,
     CircularProgress,
+    ListItemAvatar,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
@@ -122,6 +123,14 @@ const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
                                     alignItems="flex-start"
                                     key={idx}
                                 >
+                                    <ListItemAvatar>
+                                        <img
+                                            height={100}
+                                            width={100}
+                                            src={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${item.hash}`}
+                                            alt="avatar"
+                                        />
+                                    </ListItemAvatar>
                                     <ListItemText
                                         primary={<strong>{item.hash}</strong>}
                                         secondary={

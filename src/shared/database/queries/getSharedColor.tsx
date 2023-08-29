@@ -1,7 +1,7 @@
 import { db } from "../DbContext";
 
-const GetSharedColor = async () => {
-    return await db.colors.where({ origin: "shared" }).toArray();
+const GetColorByOrigin = async (origin: "shared" | "self") => {
+    return await db.colors.where({ origin: origin }).reverse().sortBy("id");
 };
 
-export default GetSharedColor;
+export default GetColorByOrigin;

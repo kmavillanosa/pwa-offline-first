@@ -75,8 +75,8 @@ const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
                 The purpose of this is to generate random data to be cached and
                 retrieved. Click <strong>Start</strong> to begin fetching, press{" "}
                 <strong>Stop</strong> to end the fetching process and{" "}
-                <strong>Reset</strong> to clear off the data.
-                Click on the specific item to view its details and share it
+                <strong>Reset</strong> to clear off the data. Click on the specific item
+                to view its details and share it
             </Alert>
             <Toolbar>
                 <LoadingButton
@@ -114,8 +114,11 @@ const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
                     {result.map((item, idx) => {
                         return (
                             <span key={idx}>
-                                <ListItem color="success"
-                                    onClick={() => onOpen(item)}
+                                <ListItem
+                                    color="success"
+                                    secondaryAction={
+                                        <Button onClick={() => onOpen(item)}>View</Button>
+                                    }
                                     alignItems="flex-start"
                                     key={idx}
                                 >

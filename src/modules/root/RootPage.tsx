@@ -56,7 +56,7 @@ const RootPage: React.FC = () => {
       <Layout>
         <Alert color="info">
           This page implements the ability to persist on IndexDB with the basic
-          CRUD (Create, Read, Update and Delete) functionalities.
+          C.R.U.D. (Create, Read, Update and Delete) functionalities.
         </Alert>
 
         <ProfileOptions />

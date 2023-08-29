@@ -15,19 +15,21 @@ import {
     IconButton,
     List,
     ListItem,
-    ListItemIcon,
-    Table,
-    TableHead,
-    Typography,
     Toolbar,
-    Divider,
     ListItemText,
+    Divider,
+    CircularProgress,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 import { useEffect, useState } from "react";
+import { db } from "@/shared/database/DbContext";
 
-const CachePlayer = () => {
+interface CachePlayerProps {
+    onOpen: (data: Data.ColorGame) => void;
+}
+
+const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
     const [result, setResults] = useState<Data.ColorGame[]>([]);
 
     const [isRunning, setRunning] = useState(false);
@@ -47,6 +49,7 @@ const CachePlayer = () => {
                 setTimeout(() => {
                     let newResult = data as Data.ColorGame;
                     setResults((prevResults) => [...prevResults, newResult]);
+                    db.colors.add(newResult);
                 }, 100);
             })
             .catch((error) => {
@@ -72,7 +75,8 @@ const CachePlayer = () => {
                 The purpose of this is to generate random data to be cached and
                 retrieved. Click <strong>Start</strong> to begin fetching, press{" "}
                 <strong>Stop</strong> to end the fetching process and{" "}
-                <strong>Reset</strong> to clear of the data
+                <strong>Reset</strong> to clear off the data.
+                Click on the specific item to view its details and share it
             </Alert>
             <Toolbar>
                 <LoadingButton
@@ -96,26 +100,24 @@ const CachePlayer = () => {
                 >
                     Reset
                 </Button>
-                <Chip
-                    style={{ margin: 10 }}
-                    size="medium"
-                    color="default"
-                    label={`${result.length} result(s) were generated.`}
-                />
+                <Box>
+                    <Chip
+                        style={{ margin: 10 }}
+                        size="medium"
+                        color="default"
+                        label={`${result.length} result(s) were generated.`}
+                    />
+                </Box>
             </Toolbar>
             <Box>
                 <List>
                     {result.map((item, idx) => {
                         return (
                             <span key={idx}>
-                                <ListItem
+                                <ListItem color="success"
+                                    onClick={() => onOpen(item)}
                                     alignItems="flex-start"
                                     key={idx}
-                                    secondaryAction={
-                                        <IconButton>
-                                            <Folder />
-                                        </IconButton>
-                                    }
                                 >
                                     <ListItemText
                                         primary={<strong>{item.hash}</strong>}

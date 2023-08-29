@@ -1,6 +1,6 @@
 import { handleBeforeInstallPrompt } from "@/shared/utils/handleBeforeInstallPrompt";
-import { handleInstallEvent } from "@/shared/utils/handleInstallEvent";
 import { handleFetchEvent } from "@/shared/utils/handleFetchEvent";
+import { handleInstallEvent } from "@/shared/utils/handleInstallEvent";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
@@ -24,11 +24,14 @@ export default function App({ Component, pageProps }: AppProps) {
       });
     }
 
+    addEventListener('fetch', handleFetchEvent);
+
+
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     window.addEventListener("install", handleInstallEvent);
-    window.addEventListener("fetch", handleFetchEvent);
 
     return () => {
+      removeEventListener('fetch', handleFetchEvent);
       // Clean up the event listener when the component unmounts
       window.removeEventListener(
         "beforeinstallprompt",
@@ -36,6 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
       );
     };
   }, []);
+
 
   return (
     <>

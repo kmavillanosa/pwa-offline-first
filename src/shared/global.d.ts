@@ -15,6 +15,11 @@ declare global {
       lastName: string;
     }
 
+    export interface Color extends EntityBase {
+      hash: string;
+      result: string[];
+    }
+
     export interface Transaction extends EntityBase {
       telNo: string;
       tranx_code: string;

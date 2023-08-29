@@ -5,12 +5,14 @@ import { populate } from "./populate";
 export class DbContext extends Dexie {
   profiles!: Table<Entities.Profile, number>;
   tranx!: Table<Entities.Transaction, number>;
+  colors!: Table<Entities.Color, number>;
 
   constructor() {
     super("pwa-db-app");
     this.version(1).stores({
       profiles: "++id",
       tranx: "++id",
+      colors: "++id, hash",
     });
   }
 }

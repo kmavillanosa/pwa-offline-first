@@ -61,9 +61,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               PWA SAMPLE APP
             </Typography>
             <Box>
-              {routes.map((item, idx) => (
-                <RouteButton key={idx} data={item} />
-              ))}
+              {routes.map((item, idx) => <RouteButton key={idx} data={item} />)}
             </Box>
           </Toolbar>
         </AppBar>

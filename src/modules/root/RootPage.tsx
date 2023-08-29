@@ -1,15 +1,11 @@
 import { Page, Layout } from "@/shared/components";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "@/shared/database/DbContext";
-import {
-  DataGrid,
-  GridColDef,
-  GridDeleteIcon,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridDeleteIcon } from "@mui/x-data-grid";
 
 import { ModeEdit } from "@mui/icons-material";
 
-import { Button } from "@mui/material";
+import { Alert, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import ProfileOptions from "@/modulesroot/ProfileOptions";
 
@@ -58,6 +54,11 @@ const RootPage: React.FC = () => {
   return (
     <Page title="pwa-demo-app">
       <Layout>
+        <Alert color="info">
+          This page implements the ability to persist on IndexDB with the basic
+          CRUD (Create, Read, Update and Delete) functionalities.
+        </Alert>
+
         <ProfileOptions />
         <DataGrid density="compact" columns={columns} rows={allItems} />
       </Layout>

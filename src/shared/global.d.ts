@@ -1,4 +1,11 @@
 declare global {
+  namespace Data {
+    interface ColorGame {
+      hash: string;
+      result: string[];
+    }
+  }
+
   namespace Entities {
     interface EntityBase {
       id?: number;
@@ -28,8 +35,9 @@ declare global {
     interface UIBase {
       name: string;
     }
-
-    export interface TestComponent extends UIBase {}
+    export interface PageRoute extends UIBase {
+      route: string;
+    }
   }
 }
 

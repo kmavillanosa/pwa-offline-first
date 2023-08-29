@@ -10,10 +10,11 @@ import {
   CssBaseline,
   Typography,
 } from "@mui/material";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { orange, teal } from "@mui/material/colors";
+import RouteButton from "./RouteButton";
 
 interface LayoutProps {
   children: ReactNode;
@@ -32,6 +33,20 @@ const useTheme = createTheme({
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
+
+  const [routes, setRoutes] = useState<UI.PageRoute[]>([]);
+
+  useEffect(() => {
+    fetch("/api/routes")
+      .then((response) => response.json())
+      .then((data) => {
+        setRoutes(data as UI.PageRoute[]);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   return (
     <ThemeProvider theme={useTheme}>
       <CssBaseline />
@@ -46,15 +61,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               PWA SAMPLE APP
             </Typography>
             <Box>
-              <Button color="secondary" onClick={() => router.push("/root")}>
-                Home
-              </Button>
-              <Button
-                color="secondary"
-                onClick={() => router.push("/printing")}
-              >
-                Printing
-              </Button>
+              {routes.map((item, idx) => (
+                <RouteButton key={idx} data={item} />
+              ))}
             </Box>
           </Toolbar>
         </AppBar>

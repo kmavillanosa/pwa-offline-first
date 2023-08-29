@@ -62,10 +62,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               PWA SAMPLE APP
-              <IconButton color="secondary" onClick={() => {
-                deleteDatabase();
-                router.reload();
-              }}>
+              <IconButton
+                color="secondary"
+                onClick={() => {
+                  deleteDatabase();
+                  router.reload();
+                }}
+              >
                 <Restore />
               </IconButton>
             </Typography>

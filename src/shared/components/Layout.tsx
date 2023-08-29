@@ -61,8 +61,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               src="/images/application128.png"
             />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              PWA SAMPLE APP
+              PWA APP
+            </Typography>
+            <Box>
               <IconButton
+                title="reset all data"
                 color="secondary"
                 onClick={() => {
                   deleteDatabase();
@@ -71,14 +74,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               >
                 <Restore />
               </IconButton>
-            </Typography>
-            <Box>
+
               {routes.map((item, idx) => (
                 <RouteButton key={idx} data={item} />
               ))}
             </Box>
           </Toolbar>
         </AppBar>
+        <small style={{ margin: 10 }}>© kmavillanosa</small>
         <Box margin={3}>{children}</Box>
       </Grid>
     </ThemeProvider>

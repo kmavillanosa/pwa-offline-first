@@ -81,7 +81,7 @@ const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
             </Alert>
             <Toolbar>
                 <LoadingButton
-                    size="small"
+                    size="large"
                     style={{ margin: 2 }}
                     variant="contained"
                     color={isRunning ? "error" : "success"}
@@ -91,7 +91,7 @@ const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
                     {isRunning ? "Stop" : "Start"}
                 </LoadingButton>
                 <Button
-                    size="small"
+                    size="large"
                     disabled={result.length <= 0 || isRunning}
                     style={{ margin: 2 }}
                     variant="contained"

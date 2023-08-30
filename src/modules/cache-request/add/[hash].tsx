@@ -1,4 +1,4 @@
-import { Page } from "@/shared/components";
+import { Layout, Page } from "@/shared/components";
 import GetColor from "@/shared/database/queries/getColor";
 import {
     Alert,
@@ -110,46 +110,48 @@ const AddCacheToDevice = () => {
 
     return (
         <Page title="New Profile">
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
-            >
-                <img
-                    height={100}
-                    width={100}
-                    src={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${data.hash}`}
-                    alt="avatar"
-                />
+            <Layout>
                 <div
                     style={{
                         display: "flex",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        justifyContent: "center",
                     }}
                 >
-                    {data.result.map((colorItem, colorIdx) => {
-                        return (
-                            <div
-                                key={colorIdx}
-                                style={{
-                                    borderWidth: "2px",
-                                    borderColor: "#212121",
-                                    borderStyle: "solid",
-                                    borderRadius: "3px",
-                                    margin: 5,
-                                    height: 10,
-                                    width: 10,
-                                    backgroundColor: colorItem,
-                                }}
-                            />
-                        );
-                    })}
+                    <img
+                        height={100}
+                        width={100}
+                        src={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${data.hash}`}
+                        alt="avatar"
+                    />
+                    <div
+                        style={{
+                            display: "flex",
+                        }}
+                    >
+                        {data.result.map((colorItem, colorIdx) => {
+                            return (
+                                <div
+                                    key={colorIdx}
+                                    style={{
+                                        borderWidth: "2px",
+                                        borderColor: "#212121",
+                                        borderStyle: "solid",
+                                        borderRadius: "3px",
+                                        margin: 5,
+                                        height: 10,
+                                        width: 10,
+                                        backgroundColor: colorItem,
+                                    }}
+                                />
+                            );
+                        })}
+                    </div>
+                    <Typography>Profile Scanned</Typography>
+                    {dataExists == true ? renderExist() : renderDoesNotExist()}
                 </div>
-                <Typography>Profile Scanned</Typography>
-                {dataExists == true ? renderExist() : renderDoesNotExist()}
-            </div>
+            </Layout>
         </Page>
     );
 };

@@ -72,13 +72,6 @@ const CachePlayer: React.FC<CachePlayerProps> = ({ onOpen }) => {
 
     return (
         <>
-            <Alert color="info">
-                The purpose of this is to generate random data to be cached and
-                retrieved. Click <strong>Start</strong> to begin fetching, press{" "}
-                <strong>Stop</strong> to end the fetching process and{" "}
-                <strong>Reset</strong> to clear off the data. Click on the specific item
-                to view its details and share it
-            </Alert>
             <Toolbar>
                 <LoadingButton
                     size="large"

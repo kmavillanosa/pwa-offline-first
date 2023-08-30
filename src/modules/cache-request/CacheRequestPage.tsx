@@ -1,6 +1,6 @@
 import { Layout, Page } from "@/shared/components";
 import CachePlayer from "./CachePlayer";
-import { Box, Grid, Paper } from "@mui/material";
+import { Alert, Box, Grid, Paper } from "@mui/material";
 import CacheViewer from "./CacheViewer";
 import { useState } from "react";
 import Tab from "@mui/material/Tab";
@@ -9,9 +9,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import dynamic from "next/dynamic";
 
-
-const CacheList = dynamic(() => import("@/modulescache-request/CacheList"))
-
+const CacheList = dynamic(() => import("@/modulescache-request/CacheList"));
 
 const CacheRequestPage: React.FC = () => {
     const [current, setCurrent] = useState<Data.ColorGame | undefined>();
@@ -25,22 +23,19 @@ const CacheRequestPage: React.FC = () => {
     return (
         <Page title="Cache Request">
             <Layout>
+                <Alert color="info">
+                    The purpose of this is to generate random data to be cached and
+                    retrieved. This is also made to test out compatibility of IndexDB
+                    across different devices. Click <strong>Start</strong> to begin
+                    fetching, press <strong>Stop</strong> to end the fetching process and{" "}
+                    <strong>Reset</strong> to clear off the data. Click on the specific
+                    item to view its details and share it.
+                </Alert>
                 <Grid container spacing={2}>
-                    <Grid item xl={4} xs={12}>
-                        <Paper>
-                            <CachePlayer
-                                onOpen={(data) => {
-                                    setCurrent(data);
-                                }}
-                            />
-                        </Paper>
-                    </Grid>
-                    <Grid item xl={8} xs={12}>
+                    <Grid item xl={5} xs={12}>
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                                <TabList
-                                    onChange={handleChange}
-                                >
+                                <TabList variant="fullWidth" onChange={handleChange}>
                                     <Tab label="Viewer" value="1" />
                                     <Tab label="My List" value="2" />
                                     <Tab label="Shared to me" value="3" />
@@ -56,6 +51,15 @@ const CacheRequestPage: React.FC = () => {
                                 <CacheList type="shared" />
                             </TabPanel>
                         </TabContext>
+                    </Grid>
+                    <Grid item xl={7} xs={12}>
+                        <Paper>
+                            <CachePlayer
+                                onOpen={(data) => {
+                                    setCurrent(data);
+                                }}
+                            />
+                        </Paper>
                     </Grid>
                 </Grid>
             </Layout>

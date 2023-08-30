@@ -26,10 +26,10 @@ interface LayoutProps {
 const useTheme = createTheme({
   palette: {
     primary: {
-      main: "#3742fa",
+      main: "#1e272e",
     },
     secondary: {
-      main: "#dfe4ea",
+      main: "#d2dae2",
     },
   },
 });

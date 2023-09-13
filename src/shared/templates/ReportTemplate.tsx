@@ -16,7 +16,7 @@ Font.register({
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    fontSize: "10",
+    fontSize: "7",
     fontFamily: "Courier New",
     flexDirection: "row",
     backgroundColor: "#fff",

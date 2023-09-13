@@ -117,7 +117,6 @@ const ReportTemplate: React.FC<ReportTemplate> = ({ data }) => (
           <Text style={styles.right}>{data.sender_name}</Text>
         </View>
 
-
         <View style={[styles.padTop]}>
           <Text>{data.code_2}</Text>
         </View>

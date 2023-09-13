@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#fff",
     // padding: 20,
-    paddingLeft: 30,
+    padding: 30,
   },
   column: {
     flex: 1,
@@ -76,7 +76,7 @@ interface ReportTemplate {
 }
 const ReportTemplate: React.FC<ReportTemplate> = ({ data }) => (
   <Document>
-    <Page size="A4" style={styles.page}>
+    <Page size="A6" style={styles.page}>
       <View style={styles.column}>
         <View style={[styles.center, styles.padBigTop]}>
           <Text>Branch Tel No :{data.telNo}</Text>
@@ -126,7 +126,7 @@ const ReportTemplate: React.FC<ReportTemplate> = ({ data }) => (
           <Text>{`${data.tranx_date} ${data.tranx_timestamp}`}</Text>
         </View>
       </View>
-      <View style={styles.column}></View>
+      {/* <View style={styles.column}></View> */}
     </Page>
   </Document>
 );
